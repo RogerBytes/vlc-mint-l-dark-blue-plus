@@ -97,6 +97,45 @@ index 655a8fa..b723820 100644
      }
  }
  
+diff --git a/modules/gui/skins2/src/vout_window.cpp b/modules/gui/skins2/src/vout_window.cpp
+index a3b0889..b9e562a 100644
+--- a/modules/gui/skins2/src/vout_window.cpp
++++ b/modules/gui/skins2/src/vout_window.cpp
+@@ -31,6 +31,7 @@
+ #include "../events/evt_key.hpp"
+ #include "../events/evt_motion.hpp"
+ #include "../events/evt_mouse.hpp"
++#include "../events/evt_scroll.hpp"
+ 
+ #include <vlc_actions.h>
+ 
+@@ -143,3 +144,14 @@ void VoutWindow::processEvent( EvtMouse &rEvtMouse )
+     else if( rEvtMouse.getAction() == EvtMouse::kDblClick )
+         vout_window_ReportMouseDoubleClick( m_pWnd, button );
+ }
++
++
++void VoutWindow::processEvent( EvtScroll &rEvtScroll )
++{
++    // Send the wheel to the core as a hotkey, like the rest of the skin does
++    // (volume by default, see the hotkeys-y-wheel-mode setting)
++    int i_vlck = rEvtScroll.getMod();
++    i_vlck |= ( rEvtScroll.getDirection() == EvtScroll::kUp ) ?
++              KEY_MOUSEWHEELUP : KEY_MOUSEWHEELDOWN;
++    getIntf()->p_sys->p_dialogs->sendKey( i_vlck );
++}
+diff --git a/modules/gui/skins2/src/vout_window.hpp b/modules/gui/skins2/src/vout_window.hpp
+index 0d4e649..29552de 100644
+--- a/modules/gui/skins2/src/vout_window.hpp
++++ b/modules/gui/skins2/src/vout_window.hpp
+@@ -58,6 +58,7 @@ public:
+     virtual void processEvent( EvtKey &rEvtKey );
+     virtual void processEvent( EvtMotion &rEvtMotion );
+     virtual void processEvent( EvtMouse &rEvtMouse );
++    virtual void processEvent( EvtScroll &rEvtScroll );
+ 
+     /// set and get Video Control for VoutWindow
+     virtual void setCtrlVideo( CtrlVideo* pCtrlVideo );
 diff --git a/modules/gui/skins2/x11/x11_factory.cpp b/modules/gui/skins2/x11/x11_factory.cpp
 index 6e3d65a..c9f4c00 100644
 --- a/modules/gui/skins2/x11/x11_factory.cpp
