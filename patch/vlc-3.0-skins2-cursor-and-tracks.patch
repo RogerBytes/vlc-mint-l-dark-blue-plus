@@ -1,0 +1,226 @@
+diff --git a/configure.ac b/configure.ac
+index 1795773..fa7fac7 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -3810,8 +3810,9 @@ AS_IF([test "${enable_skins2}" != "no"], [
+     PKG_CHECK_MODULES([XPM], [xpm],, [have_skins_deps="no"])
+     PKG_CHECK_MODULES([XINERAMA], [xinerama],, [have_skins_deps="no"])
+     PKG_CHECK_MODULES([XEXT], [xext],, [have_skins_deps="no"])
+-    VLC_ADD_CPPFLAGS([skins2],[${X_CFLAGS} ${XEXT_CFLAGS} ${XPM_CFLAGS} -DX11_SKINS])
+-    VLC_ADD_LIBS([skins2],[${X_LIBS} ${X_PRE_LIBS} ${XEXT_LIBS} ${XPM_LIBS} ${XINERAMA_LIBS} -lX11])
++    PKG_CHECK_MODULES([XCURSOR], [xcursor],, [have_skins_deps="no"])
++    VLC_ADD_CPPFLAGS([skins2],[${X_CFLAGS} ${XEXT_CFLAGS} ${XPM_CFLAGS} ${XCURSOR_CFLAGS} -DX11_SKINS])
++    VLC_ADD_LIBS([skins2],[${X_LIBS} ${X_PRE_LIBS} ${XEXT_LIBS} ${XPM_LIBS} ${XINERAMA_LIBS} ${XCURSOR_LIBS} -lX11])
+   ])
+ 
+   dnl we need freetype
+@@ -3823,7 +3824,7 @@ AS_IF([test "${enable_skins2}" != "no"], [
+     AS_IF([test "x${enable_skins2}" = "x"], [
+       AC_MSG_WARN([Skins2 interface disabled due to missing dependencies.])
+     ], [
+-      AC_MSG_ERROR([Skins2 interface requires FreeType, libxpm, libxext and libxinerama])
++      AC_MSG_ERROR([Skins2 interface requires FreeType, libxcursor, libxpm, libxext and libxinerama])
+     ])
+     enable_skins2="no"
+   ], [
+diff --git a/modules/gui/skins2/commands/cmd_input.cpp b/modules/gui/skins2/commands/cmd_input.cpp
+index cb9752f..b7c5693 100644
+--- a/modules/gui/skins2/commands/cmd_input.cpp
++++ b/modules/gui/skins2/commands/cmd_input.cpp
+@@ -26,6 +26,7 @@
+ #include "cmd_dialogs.hpp"
+ #include <vlc_input.h>
+ #include <vlc_playlist.h>
++#include <vlc_actions.h>
+ 
+ void CmdPlay::execute()
+ {
+@@ -96,3 +97,19 @@ void CmdVolumeDown::execute()
+     playlist_VolumeDown( getPL(), 1, NULL );
+ }
+ 
++
++
++/* Same actions as the V and B hotkeys: cycle subtitle / audio tracks,
++ * handled by the hotkeys module (OSD feedback included). */
++void CmdSubtitleTrack::execute()
++{
++    var_SetInteger( getIntf()->obj.libvlc, "key-action",
++                    ACTIONID_SUBTITLE_TRACK );
++}
++
++
++void CmdAudioTrack::execute()
++{
++    var_SetInteger( getIntf()->obj.libvlc, "key-action",
++                    ACTIONID_AUDIO_TRACK );
++}
+diff --git a/modules/gui/skins2/commands/cmd_input.hpp b/modules/gui/skins2/commands/cmd_input.hpp
+index a5b6716..5a46a85 100644
+--- a/modules/gui/skins2/commands/cmd_input.hpp
++++ b/modules/gui/skins2/commands/cmd_input.hpp
+@@ -36,6 +36,8 @@ DEFINE_COMMAND( Faster, "faster" )
+ DEFINE_COMMAND( Mute, "mute" )
+ DEFINE_COMMAND( VolumeUp, "volume up" )
+ DEFINE_COMMAND( VolumeDown, "volume down" )
++DEFINE_COMMAND( SubtitleTrack, "subtitle track" )
++DEFINE_COMMAND( AudioTrack, "audio track" )
+ 
+ 
+ #endif
+diff --git a/modules/gui/skins2/parser/interpreter.cpp b/modules/gui/skins2/parser/interpreter.cpp
+index e9c27c4..7fa73db 100644
+--- a/modules/gui/skins2/parser/interpreter.cpp
++++ b/modules/gui/skins2/parser/interpreter.cpp
+@@ -100,6 +100,8 @@ Interpreter::Interpreter( intf_thread_t *pIntf ): SkinObject( pIntf )
+     REGISTER_CMD( "vlc.mute()", CmdMute )
+     REGISTER_CMD( "vlc.volumeUp()", CmdVolumeUp )
+     REGISTER_CMD( "vlc.volumeDown()", CmdVolumeDown )
++    REGISTER_CMD( "vlc.subtitleTrack()", CmdSubtitleTrack )
++    REGISTER_CMD( "vlc.audioTrack()", CmdAudioTrack )
+     REGISTER_CMD( "vlc.minimize()", CmdMinimize )
+     REGISTER_CMD( "vlc.onTop()", CmdOnTop )
+     REGISTER_CMD( "vlc.snapshot()", CmdSnapshot )
+diff --git a/modules/gui/skins2/x11/x11_factory.cpp b/modules/gui/skins2/x11/x11_factory.cpp
+index 6e3d65a..c9f4c00 100644
+--- a/modules/gui/skins2/x11/x11_factory.cpp
++++ b/modules/gui/skins2/x11/x11_factory.cpp
+@@ -43,9 +43,11 @@
+ 
+ #include <vlc_common.h>
+ #include <vlc_xlib.h>
++#include <X11/Xcursor/Xcursor.h>
+ 
+ X11Factory::X11Factory( intf_thread_t *pIntf ): OSFactory( pIntf ),
+-    m_pDisplay( NULL ), m_pTimerLoop( NULL ), m_dirSep( "/" )
++    m_pDisplay( NULL ), m_pTimerLoop( NULL ), m_dirSep( "/" ),
++    mPointerWindow( None ), mVoutWindow( None ), mEmptyCursor( None )
+ {
+     // see init()
+ }
+@@ -53,6 +55,8 @@ X11Factory::X11Factory( intf_thread_t *pIntf ): OSFactory( pIntf ),
+ 
+ X11Factory::~X11Factory()
+ {
++    if( m_pDisplay && mEmptyCursor != None )
++        XFreeCursor( m_pDisplay->getDisplay(), mEmptyCursor );
+     delete m_pTimerLoop;
+     delete m_pDisplay;
+ }
+@@ -107,6 +111,8 @@ bool X11Factory::init()
+         XFree( info );
+     }
+ 
++    initCursors();
++
+     return true;
+ }
+ 
+@@ -371,3 +377,53 @@ void X11Factory::rmDir( const std::string &rPath )
+ }
+ 
+ #endif
++
++
++void X11Factory::changeCursor( CursorType_t type ) const
++{
++    Cursor cursor = mCursors[type];
++    Window win = (type == OSFactory::kNoCursor) ? mVoutWindow : mPointerWindow;
++
++    if( win != None )
++        XDefineCursor( m_pDisplay->getDisplay(), win, cursor );
++}
++
++
++void X11Factory::initCursors( )
++{
++    Display *display = m_pDisplay->getDisplay();
++    static const struct {
++        CursorType_t type;
++        const char *name;
++    } cursors[] = {
++        { kDefaultArrow, "left_ptr" },
++        { kResizeNWSE, "bottom_right_corner" },
++        { kResizeNS, "bottom_side" },
++        { kResizeWE, "right_side" },
++        { kResizeNESW, "bottom_left_corner" },
++    };
++    // retrieve cursors from default theme
++    for( unsigned i = 0; i < ARRAY_SIZE(cursors); i++ )
++        mCursors[cursors[i].type] =
++            XcursorLibraryLoadCursor( display, cursors[i].name );
++
++    // build an additional empty cursor
++    XColor color;
++    const char data[] = { 0 };
++    Window root = DefaultRootWindow( display );
++    Pixmap pix = XCreateBitmapFromData( display, root, data, 1, 1 );
++    mEmptyCursor = XCreatePixmapCursor( display, pix, pix, &color, &color, 0, 0 );
++    XFreePixmap( display, pix );
++    mCursors[kNoCursor] = mEmptyCursor;
++}
++
++
++void X11Factory::setPointerWindow( Window win )
++{
++    GenericWindow *pWin = m_windowMap[win];
++    if( pWin == NULL )
++        return;
++    if( pWin->getType() == "Vout" )
++        mVoutWindow = win;
++    mPointerWindow = win;
++}
+diff --git a/modules/gui/skins2/x11/x11_factory.hpp b/modules/gui/skins2/x11/x11_factory.hpp
+index 414a5e2..1d0b673 100644
+--- a/modules/gui/skins2/x11/x11_factory.hpp
++++ b/modules/gui/skins2/x11/x11_factory.hpp
+@@ -26,11 +26,11 @@
+ #define X11_FACTORY_HPP
+ 
+ #include <X11/Xlib.h>
++#include <map>
+ 
+ #include "../src/os_factory.hpp"
+ #include "../src/generic_window.hpp"
+ #include "x11_display.hpp"
+-#include <map>
+ 
+ class X11Display;
+ class X11DragDrop;
+@@ -144,8 +144,10 @@ public:
+     virtual void getMousePos( int &rXPos, int &rYPos ) const;
+ 
+     /// Change the cursor
+-    virtual void changeCursor( CursorType_t type ) const
+-        { /*TODO*/ (void)type; }
++    virtual void changeCursor( CursorType_t type ) const;
++
++    /// Remember which window is under the pointer
++    void setPointerWindow( Window win );
+ 
+     /// Delete a directory recursively
+     virtual void rmDir( const std::string &rPath );
+@@ -164,6 +166,11 @@ private:
+     std::list<std::string> m_resourcePath;
+     /// Monitor geometry
+     int m_screenWidth, m_screenHeight;
++    /// cursor management variables
++    mutable std::map<CursorType_t, Cursor> mCursors;
++    void initCursors();
++    Window mPointerWindow, mVoutWindow;
++    Cursor mEmptyCursor;
+ };
+ 
+ #endif
+diff --git a/modules/gui/skins2/x11/x11_loop.cpp b/modules/gui/skins2/x11/x11_loop.cpp
+index 97730ba..6bd761d 100644
+--- a/modules/gui/skins2/x11/x11_loop.cpp
++++ b/modules/gui/skins2/x11/x11_loop.cpp
+@@ -224,6 +224,7 @@ void X11Loop::handleX11Event()
+             // out of date. Get the actual current position instead
+             int x, y;
+             pOsFactory->getMousePos( x, y );
++            ((X11Factory*)pOsFactory)->setPointerWindow( event.xany.window );
+             EvtMotion evt( getIntf(), x, y );
+             pWin->processEvent( evt );
+             break;

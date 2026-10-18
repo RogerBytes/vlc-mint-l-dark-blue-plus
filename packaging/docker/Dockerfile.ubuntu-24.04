@@ -1,0 +1,12 @@
+# Build environment for Ubuntu 24.04 / Linux Mint 22 (VLC 3.0.20-3build6)
+FROM ubuntu:24.04
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Enable source packages so that "apt-get source vlc" and "apt-get build-dep vlc" work
+RUN sed -i 's/^Types: deb$/Types: deb deb-src/' /etc/apt/sources.list.d/ubuntu.sources \
+ && apt-get update \
+ && apt-get build-dep -y vlc \
+ && apt-get install -y --no-install-recommends dpkg-dev patchelf ca-certificates
+
+WORKDIR /build

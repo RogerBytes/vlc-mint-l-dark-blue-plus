@@ -1,0 +1,180 @@
+<!DOCTYPE Theme PUBLIC "-//VideoLAN//DTD VLC Skins V2.0//EN" "skin.dtd">
+<Theme version="2.0">
+  <ThemeInfo name="Mint-L Dark Blue (boutons à droite)" author="Harry" email="" webpage=""/>
+
+
+  <Bitmap id="Icones_Close_c" file="Icones/Close_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_Close_n" file="Icones/Close_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_Close_s" file="Icones/Close_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_full_c" file="Icones/full_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_full_n" file="Icones/full_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_full_s" file="Icones/full_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_minimise_c" file="Icones/minimise_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_minimise_n" file="Icones/minimise_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_minimise_s" file="Icones/minimise_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_mute_c" file="Icones/mute_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_mute_n" file="Icones/mute_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_mute_s" file="Icones/mute_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_next_c" file="Icones/next_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_next_n" file="Icones/next_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_next_s" file="Icones/next_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_pause_c" file="Icones/pause_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_pause_n" file="Icones/pause_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_pause_s" file="Icones/pause_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_play_c" file="Icones/play_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_play_n" file="Icones/play_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_play_s" file="Icones/play_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_prev_c" file="Icones/prev_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_prev_n" file="Icones/prev_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_prev_s" file="Icones/prev_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Interfaces_Barre" file="Interfaces/Barre.png" alphacolor="#000000"/>
+  <Bitmap id="Interfaces_Barre_haut" file="Interfaces/Barre_haut.png" alphacolor="#000000"/>
+  <Bitmap id="Interfaces_Coin_rond_g" file="Interfaces/Coin_rond_g.png" alphacolor="#000000"/>
+  <Bitmap id="Interfaces_Coin_rond_d" file="Interfaces/Coin_rond_d.png" alphacolor="#000000"/>
+  <Bitmap id="Interfaces_Coin_carre_g" file="Interfaces/Coin_carre_g.png" alphacolor="#000000"/>
+  <Bitmap id="Interfaces_Coin_carre_d" file="Interfaces/Coin_carre_d.png" alphacolor="#000000"/>
+  <Bitmap id="Icones_volume_dyn" file="Icones/volume_dyn.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_transparent" file="Icones/transparent.png" alphacolor="#FF00FF"/>
+  <Bitmap id="fullscreen_panneau" file="fullscreen/panneau.png" alphacolor="#000000"/>
+  <Bitmap id="slider_slider_bg_fs" file="slider/slider_bg_fs.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_subtitles_n" file="Icones/subtitles_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_subtitles_s" file="Icones/subtitles_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_subtitles_c" file="Icones/subtitles_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_audiotrack_n" file="Icones/audiotrack_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_audiotrack_s" file="Icones/audiotrack_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_audiotrack_c" file="Icones/audiotrack_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_tb_menu_n" file="Icones/tb_menu_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_tb_menu_s" file="Icones/tb_menu_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_tb_menu_c" file="Icones/tb_menu_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_tb_playlist_n" file="Icones/tb_playlist_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_tb_playlist_s" file="Icones/tb_playlist_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_tb_playlist_c" file="Icones/tb_playlist_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_prev_n" file="Icones/fs_prev_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_prev_s" file="Icones/fs_prev_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_prev_c" file="Icones/fs_prev_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_next_n" file="Icones/fs_next_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_next_s" file="Icones/fs_next_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_next_c" file="Icones/fs_next_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_play_n" file="Icones/fs_play_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_play_s" file="Icones/fs_play_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_play_c" file="Icones/fs_play_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_pause_n" file="Icones/fs_pause_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_pause_s" file="Icones/fs_pause_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_pause_c" file="Icones/fs_pause_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_Window_n" file="Icones/fs_Window_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_Window_s" file="Icones/fs_Window_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_Window_c" file="Icones/fs_Window_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_subtitles_n" file="Icones/fs_subtitles_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_subtitles_s" file="Icones/fs_subtitles_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_subtitles_c" file="Icones/fs_subtitles_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_audiotrack_n" file="Icones/fs_audiotrack_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_audiotrack_s" file="Icones/fs_audiotrack_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_audiotrack_c" file="Icones/fs_audiotrack_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_mute_n" file="Icones/fs_mute_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_mute_s" file="Icones/fs_mute_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_mute_c" file="Icones/fs_mute_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_mute_on_n" file="Icones/fs_mute_on_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_mute_on_s" file="Icones/fs_mute_on_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_mute_on_c" file="Icones/fs_mute_on_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_fs_volume_dyn" file="Icones/fs_volume_dyn.png" alphacolor="#FF00FF"/>
+  <Bitmap id="slider_fs_vol_bar" file="slider/fs_vol_bar.png" alphacolor="#FF00FF"/>
+  <Bitmap id="slider_fs_knob_n" file="slider/fs_knob_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="slider_fs_knob_s" file="slider/fs_knob_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="slider_fs_knob_c" file="slider/fs_knob_c.png" alphacolor="#FF00FF"/>
+  <Font id="Titre" file="Icones/Ubuntu-Bold.ttf" size="13"/>
+  <Font id="UbuntuMono-B" file="Icones/UbuntuMono-B.ttf"/>
+  <Bitmap id="slider_slider_bg_long" file="slider/slider_bg_long.png" alphacolor="#FF00FF"/>
+  <Bitmap id="slider_Gtime_gripper_c" file="slider/Gtime_gripper_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="slider_Gtime_gripper_n" file="slider/Gtime_gripper_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="slider_Gtime_gripper_s" file="slider/Gtime_gripper_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="resize_bord_bas" file="resize/bord_bas.png" alphacolor="#FF00FF"/>
+  <Bitmap id="resize_resize_HV" file="resize/poignee.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_no_media_sign" file="Icones/no_media_sign.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_mute_on_c" file="Icones/mute_on_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_mute_on_n" file="Icones/mute_on_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_mute_on_s" file="Icones/mute_on_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="slider_vol_bar" file="slider/vol_bar.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Interfaces_Fond_noir" file="Interfaces/Fond_noir.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Interfaces_Fond_large" file="Interfaces/Fond_large.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_maximiseW_c" file="Icones/maximiseW_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_maximiseW_n" file="Icones/maximiseW_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_maximiseW_s" file="Icones/maximiseW_s.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_maximise2004_c" file="Icones/maximise2004_c.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_maximise2004_n" file="Icones/maximise2004_n.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_maximise2004_s" file="Icones/maximise2004_s.png" alphacolor="#FF00FF"/>
+
+  <Window id="Panneaux">
+    <Layout id="principal" width="1280" height="788" minwidth="640" maxwidth="99999" minheight="428" maxheight="99999">
+      <Video id="Video" y="28" width="1280" height="720" autoresize="false" rightbottom="rightbottom"/>
+      <Image id="Fond_video" y="28" image="Interfaces_Fond_noir" resize="scale" rightbottom="rightbottom"/>
+
+      <Image id="Barr1" x="6" image="Interfaces_Barre_haut" action="move" action2="Panneaux.maximize()" resize="scale" rightbottom="righttop" visible="not Panneaux.isMaximized"/>
+      <Image id="Barr1_max" x="6" image="Interfaces_Barre_haut" action="move" action2="Panneaux.unmaximize()" resize="scale" rightbottom="righttop" visible="Panneaux.isMaximized"/>
+      <Image id="CoinG" image="Interfaces_Coin_rond_g" action="move" action2="Panneaux.maximize()" visible="not Panneaux.isMaximized"/>
+      <Image id="CoinD" x="1274" image="Interfaces_Coin_rond_d" action="move" action2="Panneaux.maximize()" lefttop="righttop" rightbottom="righttop" visible="not Panneaux.isMaximized"/>
+      <Image id="CoinG_max" image="Interfaces_Coin_carre_g" action="move" action2="Panneaux.unmaximize()" visible="Panneaux.isMaximized"/>
+      <Image id="CoinD_max" x="1274" image="Interfaces_Coin_carre_d" action="move" action2="Panneaux.unmaximize()" lefttop="righttop" rightbottom="righttop" visible="Panneaux.isMaximized"/>
+      <Text id="TitreFichier" focus="false" x="170" y="6" width="940" text="$N" font="Titre" color="#DADADA" alignment="center" scrolling="auto" rightbottom="righttop"/>
+      <Button up="Icones_tb_playlist_n" down="Icones_tb_playlist_c" over="Icones_tb_playlist_s" action="dialogs.playlist()" tooltiptext="Liste de lecture" id="TB_Playlist" x="1114" y="2" lefttop="righttop" rightbottom="righttop"/>
+      <Button up="Icones_tb_menu_n" down="Icones_tb_menu_c" over="Icones_tb_menu_s" action="dialogs.popup()" tooltiptext="Menu" id="TB_Menu" x="1144" y="2" lefttop="righttop" rightbottom="righttop"/>
+      <Button up="Icones_Close_n" down="Icones_Close_c" over="Icones_Close_s" action="vlc.quit()" id="Quitter" x="1244" y="2" lefttop="righttop" rightbottom="righttop" tooltiptext="Fermer"/>
+      <Button up="Icones_minimise_n" down="Icones_minimise_c" over="Icones_minimise_s" action="vlc.minimize()" id="Minimiser" x="1184" y="2" lefttop="righttop" rightbottom="righttop" tooltiptext="Réduire"/>
+      <Button up="Icones_maximiseW_n" down="Icones_maximiseW_c" over="Icones_maximiseW_s" action="Panneaux.maximize()" id="Maximize" x="1214" y="2" visible="not Panneaux.isMaximized" lefttop="righttop" rightbottom="righttop" tooltiptext="Agrandir"/>
+      <Button up="Icones_maximise2004_n" down="Icones_maximise2004_c" over="Icones_maximise2004_s" action="Panneaux.unmaximize()" id="Maximize_un" x="1214" y="2" visible="Panneaux.isMaximized" lefttop="righttop" rightbottom="righttop" tooltiptext="Restaurer"/>
+
+      <Image id="Fond_large" y="28" image="Interfaces_Fond_large" action="move" resize="scale" rightbottom="rightbottom" visible="not vlc.hasVout"/>
+      <Image id="LogoVLC" x="575" y="323" image="Icones_no_media_sign" lefttop="rightbottom" xkeepratio="true" ykeepratio="true" visible="not vlc.hasVout"/>
+
+      <Panel id="BarreControle" x="0" y="748" width="1280" height="40" lefttop="leftbottom" rightbottom="rightbottom">
+        <Image id="Barr2" image="Interfaces_Barre" action="move" resize="scale" rightbottom="rightbottom"/>
+        <Button up="Icones_prev_n" down="Icones_prev_c" over="Icones_prev_s" action="playlist.previous()" id="Preview" x="6" y="6" tooltiptext="Précédent (P)"/>
+        <Checkbox state="vlc.isPaused" up1="Icones_pause_n" up2="Icones_play_n" down1="Icones_pause_c" down2="Icones_play_c" over1="Icones_pause_s" over2="Icones_play_s" action1="vlc.pause()" action2="vlc.play()" id="Play Pause" x="40" y="6" tooltiptext1="Pause (Espace)" tooltiptext2="Lecture (Espace)"/>
+        <Button up="Icones_next_n" down="Icones_next_c" over="Icones_next_s" action="playlist.next()" id="Next" x="74" y="6" tooltiptext="Suivant (N)"/>
+        <Slider id="VolumeIcone" x="969" y="6" points="(0,0),(1,0)" value="volume" up="Icones_transparent" lefttop="righttop" rightbottom="righttop">
+          <SliderBackground id="VolumeIconeBG" image="Icones_volume_dyn" nbvert="201"/>
+        </Slider>
+        <Checkbox state="vlc.isMute" up1="Icones_mute_on_n" up2="Icones_mute_n" down1="Icones_mute_on_c" down2="Icones_mute_c" over1="Icones_mute_on_s" over2="Icones_mute_s" action1="vlc.mute()" action2="vlc.mute()" id="Mute" x="969" y="6" lefttop="righttop" rightbottom="righttop" tooltiptext1="Couper le son (M)" tooltiptext2="Rétablir le son (M)"/>
+        <Slider id="Volume" x="1015" y="11" points="(0,9),(100,9)" value="volume" tooltiptext="Volume $V%" up="slider_Gtime_gripper_n" down="slider_Gtime_gripper_c" over="slider_Gtime_gripper_s" lefttop="righttop" rightbottom="righttop">
+          <SliderBackground id="VolumeBG" image="slider_vol_bar" nbvert="101"/>
+        </Slider>
+        <Text text="$V%" font="UbuntuMono-B" color="#DADADA" id="Volumepourcentage" x="1117" y="14" width="38" alignment="right" visible="not dvd.isActive" lefttop="righttop" rightbottom="righttop"/>
+        <Text text="$T" font="UbuntuMono-B" color="#DADADA" id="Temps restant" x="110" y="14" width="56" alignment="right" visible="not dvd.isActive"/>
+        <Slider id="Slider2" x="182" y="11" points="(0,9),(705,9)" value="time" tooltiptext="" up="slider_Gtime_gripper_n" down="slider_Gtime_gripper_c" over="slider_Gtime_gripper_s" lefttop="lefttop" rightbottom="righttop" help="$H">
+          <SliderBackground id="Background" image="slider_slider_bg_long" nbvert="301"/>
+        </Slider>
+        <Text text="$D" font="UbuntuMono-B" color="#DADADA" id="Temps total" x="905" y="14" width="58" help="$H" visible="not dvd.isActive" lefttop="righttop" rightbottom="righttop"/>
+        <Button up="Icones_audiotrack_n" down="Icones_audiotrack_c" over="Icones_audiotrack_s" action="vlc.audioTrack()" tooltiptext="Piste audio (B)" id="PisteAudio" x="1170" y="6" lefttop="righttop" rightbottom="righttop"/>
+        <Button up="Icones_subtitles_n" down="Icones_subtitles_c" over="Icones_subtitles_s" action="vlc.subtitleTrack()" tooltiptext="Sous-titres (V)" id="SousTitres" x="1204" y="6" lefttop="righttop" rightbottom="righttop"/>
+        <Button up="Icones_full_n" down="Icones_full_c" over="Icones_full_s" action="vlc.fullscreen()" id="Plein Ecran" x="1238" y="6" lefttop="righttop" rightbottom="righttop" tooltiptext="Plein écran (F)"/>
+        <Image id="RedimBas" x="0" y="36" image="resize_bord_bas" action="resizeS" resize="scale" rightbottom="righttop"/>
+        <Image id="Redim" x="1268" y="28" image="resize_resize_HV" action="resizeSE" lefttop="rightbottom" rightbottom="rightbottom"/>
+      </Panel>
+    </Layout>
+  </Window>
+  <Window id="fullscreenController">
+    <Layout id="fswindow" width="728" height="96" minwidth="728" maxwidth="728" minheight="96" maxheight="96">
+      <Image id="FS_Fond" image="fullscreen_panneau"/>
+      <Text text="$T" font="UbuntuMono-B" color="#DADADA" id="FS_Temps" x="16" y="24" width="56" alignment="right" visible="not dvd.isActive"/>
+      <Slider id="FS_Slider" x="91" y="21" points="(0,9),(549,9)" value="time" tooltiptext="" up="slider_fs_knob_n" down="slider_fs_knob_c" over="slider_fs_knob_s" help="$H">
+        <SliderBackground id="FS_SliderBG" image="slider_slider_bg_fs" nbvert="301"/>
+      </Slider>
+      <Text text="$D" font="UbuntuMono-B" color="#DADADA" id="FS_Duree" x="658" y="24" width="58" visible="not dvd.isActive"/>
+      <Button up="Icones_fs_prev_n" down="Icones_fs_prev_c" over="Icones_fs_prev_s" action="playlist.previous()" id="FS_Prev" x="16" y="52" tooltiptext="Précédent (P)"/>
+      <Checkbox state="vlc.isPaused" up1="Icones_fs_pause_n" up2="Icones_fs_play_n" down1="Icones_fs_pause_c" down2="Icones_fs_play_c" over1="Icones_fs_pause_s" over2="Icones_fs_play_s" action1="vlc.pause()" action2="vlc.play()" id="FS_PlayPause" x="50" y="52" tooltiptext1="Pause (Espace)" tooltiptext2="Lecture (Espace)"/>
+      <Button up="Icones_fs_next_n" down="Icones_fs_next_c" over="Icones_fs_next_s" action="playlist.next()" id="FS_Next" x="84" y="52" tooltiptext="Suivant (N)"/>
+      <Text id="FS_Titre" focus="false" x="138" y="58" width="251" text="$N" font="Titre" color="#DADADA" alignment="center" scrolling="auto"/>
+      <Slider id="FS_VolumeIcone" x="411" y="52" points="(0,0),(1,0)" value="volume" up="Icones_transparent">
+        <SliderBackground id="FS_VolumeIconeBG" image="Icones_fs_volume_dyn" nbvert="201"/>
+      </Slider>
+      <Checkbox state="vlc.isMute" up1="Icones_fs_mute_on_n" up2="Icones_fs_mute_n" down1="Icones_fs_mute_on_c" down2="Icones_fs_mute_c" over1="Icones_fs_mute_on_s" over2="Icones_fs_mute_s" action1="vlc.mute()" action2="vlc.mute()" id="FS_Mute" x="411" y="52" tooltiptext1="Couper le son (M)" tooltiptext2="Rétablir le son (M)"/>
+      <Slider id="FS_Volume" x="457" y="57" points="(0,9),(100,9)" value="volume" tooltiptext="Volume $V%" up="slider_fs_knob_n" down="slider_fs_knob_c" over="slider_fs_knob_s">
+        <SliderBackground id="FS_VolumeBG" image="slider_fs_vol_bar" nbvert="101"/>
+      </Slider>
+      <Text text="$V%" font="UbuntuMono-B" color="#DADADA" id="FS_VolumeTexte" x="559" y="60" width="38" alignment="right" visible="not dvd.isActive"/>
+      <Button up="Icones_fs_audiotrack_n" down="Icones_fs_audiotrack_c" over="Icones_fs_audiotrack_s" action="vlc.audioTrack()" tooltiptext="Piste audio (B)" id="FS_PisteAudio" x="612" y="52"/>
+      <Button up="Icones_fs_subtitles_n" down="Icones_fs_subtitles_c" over="Icones_fs_subtitles_s" action="vlc.subtitleTrack()" tooltiptext="Sous-titres (V)" id="FS_SousTitres" x="646" y="52"/>
+      <Button up="Icones_fs_Window_n" down="Icones_fs_Window_c" over="Icones_fs_Window_s" action="vlc.fullscreen()" id="FS_Quitter" x="680" y="52" tooltiptext="Quitter le plein écran (F)"/>
+    </Layout>
+  </Window>
+
+</Theme>
