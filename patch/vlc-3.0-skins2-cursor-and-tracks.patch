@@ -81,6 +81,22 @@ index e9c27c4..7fa73db 100644
      REGISTER_CMD( "vlc.minimize()", CmdMinimize )
      REGISTER_CMD( "vlc.onTop()", CmdOnTop )
      REGISTER_CMD( "vlc.snapshot()", CmdSnapshot )
+diff --git a/modules/gui/skins2/src/generic_window.cpp b/modules/gui/skins2/src/generic_window.cpp
+index 655a8fa..b723820 100644
+--- a/modules/gui/skins2/src/generic_window.cpp
++++ b/modules/gui/skins2/src/generic_window.cpp
+@@ -153,8 +153,10 @@ void GenericWindow::innerShow()
+ {
+     if( m_pOsWindow )
+     {
+-        m_pOsWindow->show();
++        // Position the window before mapping it, so that the window manager
++        // never shows it at a default place first
+         m_pOsWindow->moveResize( m_left, m_top, m_width, m_height );
++        m_pOsWindow->show();
+     }
+ }
+ 
 diff --git a/modules/gui/skins2/x11/x11_factory.cpp b/modules/gui/skins2/x11/x11_factory.cpp
 index 6e3d65a..c9f4c00 100644
 --- a/modules/gui/skins2/x11/x11_factory.cpp
@@ -224,3 +240,27 @@ index 97730ba..6bd761d 100644
              EvtMotion evt( getIntf(), x, y );
              pWin->processEvent( evt );
              break;
+diff --git a/modules/gui/skins2/x11/x11_window.cpp b/modules/gui/skins2/x11/x11_window.cpp
+index f4574f5..e5b51e5 100644
+--- a/modules/gui/skins2/x11/x11_window.cpp
++++ b/modules/gui/skins2/x11/x11_window.cpp
+@@ -290,6 +290,19 @@ void X11Window::hide() const
+ 
+ void X11Window::moveResize( int left, int top, int width, int height ) const
+ {
++    if( m_type == GenericWindow::FscWindow )
++    {
++        // The fullscreen controller is unmapped and mapped again each time it
++        // hides and shows: tell the window manager that its position is set
++        // by the program, so that it does not place it elsewhere first
++        XSizeHints hints;
++        memset( &hints, 0, sizeof( hints ) );
++        hints.flags = USPosition | PPosition;
++        hints.x = left;
++        hints.y = top;
++        XSetWMNormalHints( XDISPLAY, m_wnd, &hints );
++    }
++
+     if( width && height )
+         XMoveResizeWindow( XDISPLAY, m_wnd, left, top, width, height );
+     else

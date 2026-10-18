@@ -27,6 +27,7 @@ The Mint-L Dark Blue VLC skin, bundled with a patched skins module that fixes th
 
 - **Mouse cursor auto-hide**: the cursor disappears after a second of inactivity over the video, in window and fullscreen mode (the stock VLC 3 skins module never implemented it on Linux).
 - **Resize cursors** over the skin's resize areas.
+- **Steady fullscreen panel**: it no longer flashes at the top of the screen for a split second before reaching its place.
 - **Subtitle and audio track buttons** that cycle tracks like the `V` and `B` hotkeys, with VLC's usual on-screen message.
 - **Mint-L Dark Blue skin** installed as VLC's default skin, plus a variant with the window buttons on the right.
 - Native-looking title bar (real Mint-L window buttons, centred file name, double-click to maximize), flat modern controls, stretchable progress bar, dynamic volume icon, and a floating fullscreen panel.
@@ -106,7 +107,7 @@ The `.deb` and the two `.vlt` skins end up in `dist/`.
 To build against another VLC version of the same distribution, set it explicitly:
 
 ```bash
-VLC_VERSION=3.0.20-3build6 PKG_REV=1 ./packaging/build.sh
+VLC_VERSION=3.0.20-3build6 PKG_REV=2 ./packaging/build.sh
 ```
 
 Repository layout:
@@ -122,10 +123,11 @@ Repository layout:
 
 <details><summary class="button">🔍 Spoiler</summary><div class="spoiler">
 
-[`patch/vlc-3.0-skins2-cursor-and-tracks.patch`](patch/vlc-3.0-skins2-cursor-and-tracks.patch) changes about 90 lines of VLC's `modules/gui/skins2`:
+[`patch/vlc-3.0-skins2-cursor-and-tracks.patch`](patch/vlc-3.0-skins2-cursor-and-tracks.patch) changes about 110 lines of VLC's `modules/gui/skins2`:
 
 - **Cursor handling on X11**: backport of the implementation already present in VLC 4 (`X11Factory::changeCursor`, empty cursor and Xcursor themed cursors). In VLC 3 this function is an empty `TODO`.
 - **Two new skin commands**: `vlc.subtitleTrack()` and `vlc.audioTrack()`, which trigger the same actions as the `V` and `B` hotkeys.
+- **Fullscreen panel placement**: windows are now positioned before being shown, and the fullscreen panel tells the window manager that its position is set by the program (`USPosition`/`PPosition`). Without this, the window manager placed the panel itself (centred at the top of the screen) each time it reappeared, until VLC moved it back.
 
 A skin using these commands still loads on an unpatched VLC: the two buttons are simply skipped.
 
