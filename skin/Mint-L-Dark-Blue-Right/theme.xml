@@ -29,6 +29,8 @@
   <Bitmap id="Icones_prev_s" file="Icones/prev_s.png" alphacolor="#FF00FF"/>
   <Bitmap id="Interfaces_Barre" file="Interfaces/Barre.png" alphacolor="#000000"/>
   <Bitmap id="Interfaces_Barre_haut" file="Interfaces/Barre_haut.png" alphacolor="#000000"/>
+  <Bitmap id="Interfaces_Barre_haut_max" file="Interfaces/Barre_haut_max.png" alphacolor="#000000"/>
+  <Bitmap id="Interfaces_Contour_v" file="Interfaces/Contour_v.png" alphacolor="#FF00FF"/>
   <Bitmap id="Interfaces_Coin_rond_g" file="Interfaces/Coin_rond_g.png" alphacolor="#000000"/>
   <Bitmap id="Interfaces_Coin_rond_d" file="Interfaces/Coin_rond_d.png" alphacolor="#000000"/>
   <Bitmap id="Interfaces_Coin_carre_g" file="Interfaces/Coin_carre_g.png" alphacolor="#000000"/>
@@ -105,11 +107,11 @@
 
   <Window id="Panneaux">
     <Layout id="principal" width="1280" height="788" minwidth="640" maxwidth="99999" minheight="428" maxheight="99999">
-      <Video id="Video" y="28" width="1280" height="720" autoresize="false" rightbottom="rightbottom"/>
+      <Video id="Video" x="1" y="28" width="1278" height="720" autoresize="false" rightbottom="rightbottom"/>
       <Image id="Fond_video" y="28" image="Interfaces_Fond_noir" resize="scale" rightbottom="rightbottom"/>
 
       <Image id="Barr1" x="6" image="Interfaces_Barre_haut" action="move" action2="Panneaux.maximize()" resize="scale" rightbottom="righttop" visible="not Panneaux.isMaximized"/>
-      <Image id="Barr1_max" x="6" image="Interfaces_Barre_haut" action="move" action2="Panneaux.unmaximize()" resize="scale" rightbottom="righttop" visible="Panneaux.isMaximized"/>
+      <Image id="Barr1_max" x="6" image="Interfaces_Barre_haut_max" action="move" action2="Panneaux.unmaximize()" resize="scale" rightbottom="righttop" visible="Panneaux.isMaximized"/>
       <Image id="CoinG" image="Interfaces_Coin_rond_g" action="move" action2="Panneaux.maximize()" visible="not Panneaux.isMaximized"/>
       <Image id="CoinD" x="1274" image="Interfaces_Coin_rond_d" action="move" action2="Panneaux.maximize()" lefttop="righttop" rightbottom="righttop" visible="not Panneaux.isMaximized"/>
       <Image id="CoinG_max" image="Interfaces_Coin_carre_g" action="move" action2="Panneaux.unmaximize()" visible="Panneaux.isMaximized"/>
@@ -149,6 +151,10 @@
         <Image id="RedimBas" x="0" y="36" image="resize_bord_bas" action="resizeS" resize="scale" rightbottom="righttop"/>
         <Image id="Redim" x="1268" y="28" image="resize_resize_HV" action="resizeSE" lefttop="rightbottom" rightbottom="rightbottom"/>
       </Panel>
+
+      <!-- 1px window outline, like the native Mint-L windows (hidden when maximized) -->
+      <Image id="ContourG" x="0" y="28" image="Interfaces_Contour_v" resize="scale" rightbottom="leftbottom" visible="not Panneaux.isMaximized"/>
+      <Image id="ContourD" x="1279" y="28" image="Interfaces_Contour_v" resize="scale" lefttop="righttop" rightbottom="rightbottom" visible="not Panneaux.isMaximized"/>
     </Layout>
   </Window>
   <Window id="fullscreenController">

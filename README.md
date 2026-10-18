@@ -108,7 +108,7 @@ The `.deb` and the two `.vlt` skins end up in `dist/`.
 To build against another VLC version of the same distribution, set it explicitly:
 
 ```bash
-VLC_VERSION=3.0.20-3build6 PKG_REV=3 ./packaging/build.sh
+VLC_VERSION=3.0.20-3build6 PKG_REV=4 ./packaging/build.sh
 ```
 
 Repository layout:
