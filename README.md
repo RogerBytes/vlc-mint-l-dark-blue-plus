@@ -108,7 +108,7 @@ The `.deb` and the two `.vlt` skins end up in `dist/`.
 To build against another VLC version of the same distribution, set it explicitly:
 
 ```bash
-VLC_VERSION=3.0.20-3build6 PKG_REV=4 ./packaging/build.sh
+VLC_VERSION=3.0.20-3build6 PKG_REV=5 ./packaging/build.sh
 ```
 
 Repository layout:
@@ -129,7 +129,7 @@ Repository layout:
 - **Cursor handling on X11**: backport of the implementation already present in VLC 4 (`X11Factory::changeCursor`, empty cursor and Xcursor themed cursors). In VLC 3 this function is an empty `TODO`.
 - **Two new skin commands**: `vlc.subtitleTrack()` and `vlc.audioTrack()`, which trigger the same actions as the `V` and `B` hotkeys.
 - **Mouse wheel over the video**: the video window now forwards the wheel to VLC as a hotkey, like the rest of the skin already did (volume by default, `hotkeys-y-wheel-mode`). The stock module ignored it.
-- **Fullscreen panel placement**: windows are now positioned before being shown, and the fullscreen panel tells the window manager that its position is set by the program (`USPosition`/`PPosition`). Without this, the window manager placed the panel itself (centred at the top of the screen) each time it reappeared, until VLC moved it back.
+- **Window placement**: windows are now positioned before being shown, and the skin windows tell the window manager that their position is set by the program (`USPosition`/`PPosition`). Without this, the window manager placed the fullscreen panel itself (centred at the top of the screen) each time it reappeared, until VLC moved it back. The main window still reopens where it was last closed.
 
 A skin using these commands still loads on an unpatched VLC: the two buttons are simply skipped.
 

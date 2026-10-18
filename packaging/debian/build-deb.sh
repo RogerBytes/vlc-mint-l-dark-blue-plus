@@ -6,7 +6,7 @@
 set -euo pipefail
 
 VLC_VERSION="${VLC_VERSION:-3.0.20-3build6}"   # exact Ubuntu/Mint VLC version to patch
-PKG_REV="${PKG_REV:-4}"                         # revision of our package for this VLC version
+PKG_REV="${PKG_REV:-5}"                         # revision of our package for this VLC version
 PKG_NAME="vlc-plugin-skins2-mint-l"
 PLUGIN_PATH="usr/lib/x86_64-linux-gnu/vlc/plugins/gui/libskins2_plugin.so"
 SKINS_DIR="usr/share/vlc/skins2"

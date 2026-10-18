@@ -280,18 +280,20 @@ index 97730ba..6bd761d 100644
              pWin->processEvent( evt );
              break;
 diff --git a/modules/gui/skins2/x11/x11_window.cpp b/modules/gui/skins2/x11/x11_window.cpp
-index f4574f5..e5b51e5 100644
+index f4574f5..ad8bb54 100644
 --- a/modules/gui/skins2/x11/x11_window.cpp
 +++ b/modules/gui/skins2/x11/x11_window.cpp
-@@ -290,6 +290,19 @@ void X11Window::hide() const
+@@ -290,6 +290,21 @@ void X11Window::hide() const
  
  void X11Window::moveResize( int left, int top, int width, int height ) const
  {
-+    if( m_type == GenericWindow::FscWindow )
++    if( m_type == GenericWindow::TopWindow ||
++        m_type == GenericWindow::FscWindow )
 +    {
-+        // The fullscreen controller is unmapped and mapped again each time it
-+        // hides and shows: tell the window manager that its position is set
-+        // by the program, so that it does not place it elsewhere first
++        // Skin windows are positioned before being mapped (and the fullscreen
++        // controller is unmapped and mapped again each time it hides and
++        // shows): tell the window manager that their position is set by the
++        // program, so that it keeps it instead of placing them itself
 +        XSizeHints hints;
 +        memset( &hints, 0, sizeof( hints ) );
 +        hints.flags = USPosition | PPosition;
