@@ -69,7 +69,7 @@ index a5b6716..5a46a85 100644
  
  #endif
 diff --git a/modules/gui/skins2/parser/interpreter.cpp b/modules/gui/skins2/parser/interpreter.cpp
-index e9c27c4..7fa73db 100644
+index e9c27c4..e6a07bf 100644
 --- a/modules/gui/skins2/parser/interpreter.cpp
 +++ b/modules/gui/skins2/parser/interpreter.cpp
 @@ -100,6 +100,8 @@ Interpreter::Interpreter( intf_thread_t *pIntf ): SkinObject( pIntf )
@@ -81,6 +81,30 @@ index e9c27c4..7fa73db 100644
      REGISTER_CMD( "vlc.minimize()", CmdMinimize )
      REGISTER_CMD( "vlc.onTop()", CmdOnTop )
      REGISTER_CMD( "vlc.snapshot()", CmdSnapshot )
+@@ -467,6 +469,23 @@ VarBool *Interpreter::getVarBool( const std::string &rName, Theme *pTheme )
+                     return NULL;
+                 }
+             }
++            else if( token.find( ".isFocused" ) != std::string::npos )
++            {
++                int leftPos = token.find( ".isFocused" );
++                std::string windowId = token.substr( 0, leftPos );
++                TopWindow *pWin = pTheme->getWindowById( windowId );
++                if( pWin )
++                {
++                    // Push the "focused" variable onto the stack
++                    varStack.push_back( &pWin->getFocusedVar() );
++                }
++                else
++                {
++                    msg_Err( getIntf(), "unknown window (%s)",
++                             windowId.c_str() );
++                    return NULL;
++                }
++            }
+             else if( token.find( ".isActive" ) != std::string::npos )
+             {
+                 int leftPos = token.find( ".isActive" );
 diff --git a/modules/gui/skins2/src/generic_window.cpp b/modules/gui/skins2/src/generic_window.cpp
 index 655a8fa..b723820 100644
 --- a/modules/gui/skins2/src/generic_window.cpp
@@ -97,6 +121,55 @@ index 655a8fa..b723820 100644
      }
  }
  
+diff --git a/modules/gui/skins2/src/top_window.cpp b/modules/gui/skins2/src/top_window.cpp
+index 522e775..50f156e 100644
+--- a/modules/gui/skins2/src/top_window.cpp
++++ b/modules/gui/skins2/src/top_window.cpp
+@@ -70,6 +70,10 @@ TopWindow::TopWindow( intf_thread_t *pIntf, int left, int top,
+     // Create the "maximized" variable and register it in the manager
+     m_pVarMaximized = new VarBoolImpl( pIntf );
+     VarManager::instance( pIntf )->registerVar( VariablePtr( m_pVarMaximized ) );
++
++    // Create the "focused" variable and register it in the manager
++    m_pVarFocused = new VarBoolImpl( pIntf );
++    VarManager::instance( pIntf )->registerVar( VariablePtr( m_pVarFocused ) );
+ }
+ 
+ 
+@@ -82,7 +86,8 @@ TopWindow::~TopWindow()
+ 
+ void TopWindow::processEvent( EvtFocus &rEvtFocus )
+ {
+-    (void)rEvtFocus;
++    // Let the skin show the window as active or inactive
++    m_pVarFocused->set( rEvtFocus.getAsString() == "focus:in" );
+ }
+ 
+ 
+diff --git a/modules/gui/skins2/src/top_window.hpp b/modules/gui/skins2/src/top_window.hpp
+index ec2977e..4cca851 100644
+--- a/modules/gui/skins2/src/top_window.hpp
++++ b/modules/gui/skins2/src/top_window.hpp
+@@ -84,6 +84,9 @@ public:
+     /// Get the "maximized" variable
+     VarBool &getMaximizedVar() { return *m_pVarMaximized; }
+ 
++    /// Get the "focused" variable (true when the window has the keyboard focus)
++    VarBool &getFocusedVar() { return *m_pVarFocused; }
++
+     /// Get the initial visibility status
+     bool getInitialVisibility() const { return m_initialVisibility; }
+ 
+@@ -125,6 +128,9 @@ private:
+     /// Variable for the visibility of the window
+     VarBoolImpl *m_pVarMaximized;
+ 
++    /// Variable for the focus of the window
++    VarBoolImpl *m_pVarFocused;
++
+     /**
+      * Find the uppest control in the layout hit by the mouse, and send
+      * it an enter event if needed
 diff --git a/modules/gui/skins2/src/vout_window.cpp b/modules/gui/skins2/src/vout_window.cpp
 index a3b0889..b9e562a 100644
 --- a/modules/gui/skins2/src/vout_window.cpp
@@ -268,10 +341,31 @@ index 414a5e2..1d0b673 100644
  
  #endif
 diff --git a/modules/gui/skins2/x11/x11_loop.cpp b/modules/gui/skins2/x11/x11_loop.cpp
-index 97730ba..6bd761d 100644
+index 97730ba..4e07d4e 100644
 --- a/modules/gui/skins2/x11/x11_loop.cpp
 +++ b/modules/gui/skins2/x11/x11_loop.cpp
-@@ -224,6 +224,7 @@ void X11Loop::handleX11Event()
+@@ -207,12 +207,20 @@ void X11Loop::handleX11Event()
+         }
+         case FocusIn:
+         {
++            // Ignore focus moves inside the window (e.g. to the video)
++            if( event.xfocus.detail == NotifyInferior ||
++                event.xfocus.detail == NotifyPointer )
++                break;
+             EvtFocus evt( getIntf(), true );
+             pWin->processEvent( evt );
+             break;
+         }
+         case FocusOut:
+         {
++            // Ignore focus moves inside the window (e.g. to the video)
++            if( event.xfocus.detail == NotifyInferior ||
++                event.xfocus.detail == NotifyPointer )
++                break;
+             EvtFocus evt( getIntf(), false );
+             pWin->processEvent( evt );
+             break;
+@@ -224,6 +232,7 @@ void X11Loop::handleX11Event()
              // out of date. Get the actual current position instead
              int x, y;
              pOsFactory->getMousePos( x, y );

@@ -29,6 +29,7 @@ The Mint-L Dark Blue VLC skin, bundled with a patched skins module that fixes th
 - **Resize cursors** over the skin's resize areas.
 - **Steady fullscreen panel**: it no longer flashes at the top of the screen for a split second before reaching its place.
 - **Mouse wheel over the video** changes the volume, in window and fullscreen mode (like the rest of the skin; follows VLC's mouse wheel setting).
+- **Inactive window state**: like native Cinnamon windows, the close button turns grey and the window buttons dim when VLC is not the focused window.
 - **Subtitle and audio track buttons** that cycle tracks like the `V` and `B` hotkeys, with VLC's usual on-screen message.
 - **Mint-L Dark Blue skin** installed as VLC's default skin, plus a variant with the window buttons on the right.
 - Native-looking title bar (real Mint-L window buttons, centred file name, double-click to maximize), flat modern controls, stretchable progress bar, dynamic volume icon, and a floating fullscreen panel.
@@ -108,7 +109,7 @@ The `.deb` and the two `.vlt` skins end up in `dist/`.
 To build against another VLC version of the same distribution, set it explicitly:
 
 ```bash
-VLC_VERSION=3.0.20-3build6 PKG_REV=5 ./packaging/build.sh
+VLC_VERSION=3.0.20-3build6 PKG_REV=6 ./packaging/build.sh
 ```
 
 Repository layout:
@@ -124,14 +125,15 @@ Repository layout:
 
 <details><summary class="button">🔍 Spoiler</summary><div class="spoiler">
 
-[`patch/vlc-3.0-skins2-cursor-and-tracks.patch`](patch/vlc-3.0-skins2-cursor-and-tracks.patch) changes about 120 lines of VLC's `modules/gui/skins2`:
+[`patch/vlc-3.0-skins2-cursor-and-tracks.patch`](patch/vlc-3.0-skins2-cursor-and-tracks.patch) changes about 160 lines of VLC's `modules/gui/skins2`:
 
 - **Cursor handling on X11**: backport of the implementation already present in VLC 4 (`X11Factory::changeCursor`, empty cursor and Xcursor themed cursors). In VLC 3 this function is an empty `TODO`.
 - **Two new skin commands**: `vlc.subtitleTrack()` and `vlc.audioTrack()`, which trigger the same actions as the `V` and `B` hotkeys.
 - **Mouse wheel over the video**: the video window now forwards the wheel to VLC as a hotkey, like the rest of the skin already did (volume by default, `hotkeys-y-wheel-mode`). The stock module ignored it.
+- **Window focus**: a new skin variable, `<window>.isFocused`, tells whether a skin window has the keyboard focus (focus moves inside the window, e.g. to the video, are ignored). The skin uses it to grey out the window buttons.
 - **Window placement**: windows are now positioned before being shown, and the skin windows tell the window manager that their position is set by the program (`USPosition`/`PPosition`). Without this, the window manager placed the fullscreen panel itself (centred at the top of the screen) each time it reappeared, until VLC moved it back. The main window still reopens where it was last closed.
 
-A skin using these commands still loads on an unpatched VLC: the two buttons are simply skipped.
+A skin using these commands and this variable still loads on an unpatched VLC: the two track buttons are simply skipped, and the window buttons stay in their focused colours.
 
 </div></details>
 

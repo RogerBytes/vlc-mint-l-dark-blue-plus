@@ -3,6 +3,10 @@
   <ThemeInfo name="Mint-L Dark Blue (boutons à droite)" author="Harry" email="" webpage=""/>
 
 
+  <Bitmap id="Icones_Close_b" file="Icones/Close_b.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_minimise_b" file="Icones/minimise_b.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_maximiseW_b" file="Icones/maximiseW_b.png" alphacolor="#FF00FF"/>
+  <Bitmap id="Icones_maximise2004_b" file="Icones/maximise2004_b.png" alphacolor="#FF00FF"/>
   <Bitmap id="Icones_Close_c" file="Icones/Close_c.png" alphacolor="#FF00FF"/>
   <Bitmap id="Icones_Close_n" file="Icones/Close_n.png" alphacolor="#FF00FF"/>
   <Bitmap id="Icones_Close_s" file="Icones/Close_s.png" alphacolor="#FF00FF"/>
@@ -123,6 +127,12 @@
       <Button up="Icones_minimise_n" down="Icones_minimise_c" over="Icones_minimise_s" action="vlc.minimize()" id="Minimiser" x="1184" y="2" lefttop="righttop" rightbottom="righttop" tooltiptext="Réduire"/>
       <Button up="Icones_maximiseW_n" down="Icones_maximiseW_c" over="Icones_maximiseW_s" action="Panneaux.maximize()" id="Maximize" x="1214" y="2" visible="not Panneaux.isMaximized" lefttop="righttop" rightbottom="righttop" tooltiptext="Agrandir"/>
       <Button up="Icones_maximise2004_n" down="Icones_maximise2004_c" over="Icones_maximise2004_s" action="Panneaux.unmaximize()" id="Maximize_un" x="1214" y="2" visible="Panneaux.isMaximized" lefttop="righttop" rightbottom="righttop" tooltiptext="Restaurer"/>
+      <!-- Grey window buttons when the window is not focused (needs the patched module;
+           on a stock VLC these are skipped and the buttons above stay as they are) -->
+      <Checkbox state="Panneaux.isFocused" up1="Icones_Close_b" over1="Icones_Close_s" down1="Icones_Close_c" up2="Icones_Close_n" over2="Icones_Close_s" down2="Icones_Close_c" action1="vlc.quit()" action2="vlc.quit()" id="Quitter_focus" x="1244" y="2" lefttop="righttop" rightbottom="righttop" tooltiptext1="Fermer" tooltiptext2="Fermer"/>
+      <Checkbox state="Panneaux.isFocused" up1="Icones_minimise_b" over1="Icones_minimise_s" down1="Icones_minimise_c" up2="Icones_minimise_n" over2="Icones_minimise_s" down2="Icones_minimise_c" action1="vlc.minimize()" action2="vlc.minimize()" id="Minimiser_focus" x="1184" y="2" lefttop="righttop" rightbottom="righttop" tooltiptext1="Réduire" tooltiptext2="Réduire"/>
+      <Checkbox state="Panneaux.isFocused" up1="Icones_maximiseW_b" over1="Icones_maximiseW_s" down1="Icones_maximiseW_c" up2="Icones_maximiseW_n" over2="Icones_maximiseW_s" down2="Icones_maximiseW_c" action1="Panneaux.maximize()" action2="Panneaux.maximize()" id="Maximize_focus" x="1214" y="2" visible="not Panneaux.isMaximized" lefttop="righttop" rightbottom="righttop" tooltiptext1="Agrandir" tooltiptext2="Agrandir"/>
+      <Checkbox state="Panneaux.isFocused" up1="Icones_maximise2004_b" over1="Icones_maximise2004_s" down1="Icones_maximise2004_c" up2="Icones_maximise2004_n" over2="Icones_maximise2004_s" down2="Icones_maximise2004_c" action1="Panneaux.unmaximize()" action2="Panneaux.unmaximize()" id="Maximize_un_focus" x="1214" y="2" visible="Panneaux.isMaximized" lefttop="righttop" rightbottom="righttop" tooltiptext1="Restaurer" tooltiptext2="Restaurer"/>
 
       <Image id="Fond_large" y="28" image="Interfaces_Fond_large" action="move" resize="scale" rightbottom="rightbottom" visible="not vlc.hasVout"/>
       <Image id="LogoVLC" x="575" y="323" image="Icones_no_media_sign" lefttop="rightbottom" xkeepratio="true" ykeepratio="true" visible="not vlc.hasVout"/>
