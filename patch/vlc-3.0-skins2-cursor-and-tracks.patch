@@ -68,6 +68,71 @@ index a5b6716..5a46a85 100644
  
  
  #endif
+diff --git a/modules/gui/skins2/parser/builder.cpp b/modules/gui/skins2/parser/builder.cpp
+index 7014fb4..0807f58 100644
+--- a/modules/gui/skins2/parser/builder.cpp
++++ b/modules/gui/skins2/parser/builder.cpp
+@@ -58,6 +58,31 @@
+ #include "../utils/var_text.hpp"
+ 
+ #include <sys/stat.h>
++
++
++/// Translate a skin tooltip with VLC's own translations, so that a skin
++/// written in English shows its tooltips in the user's language.
++/// "Text", "Text (Key)" and "Text $VAR..." are handled: the text and the key
++/// name are looked up in VLC's catalogue, the rest is kept as is.
++static std::string translateTooltip( const std::string &rText )
++{
++    if( rText.empty() )
++        return rText;
++    size_t cut = rText.find( " (" );
++    size_t var = rText.find( " $" );
++    if( var < cut )
++        cut = var;
++    std::string base = rText.substr( 0, cut );
++    std::string rest = ( cut == std::string::npos ) ? "" : rText.substr( cut );
++    if( rest.size() > 4 && rest.compare( 0, 2, " (" ) == 0 &&
++        rest[rest.size() - 1] == ')' )
++    {
++        // Translate the key name, e.g. " (Space)" (single letters are kept)
++        std::string key = rest.substr( 2, rest.size() - 3 );
++        rest = " (" + std::string( vlc_gettext( key.c_str() ) ) + ")";
++    }
++    return std::string( vlc_gettext( base.c_str() ) ) + rest;
++}
+ #include <vlc_fs.h>
+ #include <vlc_image.h>
+ 
+@@ -490,7 +515,7 @@ void Builder::addButton( const BuilderData::Button &rData )
+     VarBool *pVisible = pInterpreter->getVarBool( rData.m_visible, m_pTheme );
+ 
+     CtrlButton *pButton = new CtrlButton( getIntf(), *pBmpUp, *pBmpOver,
+-        *pBmpDown, *pCommand, UString( getIntf(), rData.m_tooltip.c_str() ),
++        *pBmpDown, *pCommand, UString( getIntf(), translateTooltip( rData.m_tooltip ).c_str() ),
+         UString( getIntf(), rData.m_help.c_str() ), pVisible );
+     m_pTheme->m_controls[rData.m_id] = CtrlGenericPtr( pButton );
+ 
+@@ -596,8 +621,8 @@ void Builder::addCheckbox( const BuilderData::Checkbox &rData )
+     // Create the control
+     CtrlCheckbox *pCheckbox = new CtrlCheckbox( getIntf(), *pBmpUp1,
+         *pBmpOver1, *pBmpDown1, *pBmpUp2, *pBmpOver2, *pBmpDown2, *pCommand1,
+-        *pCommand2, UString( getIntf(), rData.m_tooltip1.c_str() ),
+-        UString( getIntf(), rData.m_tooltip2.c_str() ), *pVar,
++        *pCommand2, UString( getIntf(), translateTooltip( rData.m_tooltip1 ).c_str() ),
++        UString( getIntf(), translateTooltip( rData.m_tooltip2 ).c_str() ), *pVar,
+         UString( getIntf(), rData.m_help.c_str() ), pVisible );
+     m_pTheme->m_controls[rData.m_id] = CtrlGenericPtr( pCheckbox );
+ 
+@@ -932,7 +957,7 @@ void Builder::addSlider( const BuilderData::Slider &rData )
+     // Create the cursor control
+     CtrlSliderCursor *pCursor = new CtrlSliderCursor( getIntf(), *pBmpUp,
+         *pBmpOver, *pBmpDown, *pCurve, *pVar, pVisible,
+-        UString( getIntf(), rData.m_tooltip.c_str() ),
++        UString( getIntf(), translateTooltip( rData.m_tooltip ).c_str() ),
+         UString( getIntf(), rData.m_help.c_str() ) );
+     m_pTheme->m_controls[rData.m_id] = CtrlGenericPtr( pCursor );
+ 
 diff --git a/modules/gui/skins2/parser/interpreter.cpp b/modules/gui/skins2/parser/interpreter.cpp
 index e9c27c4..e6a07bf 100644
 --- a/modules/gui/skins2/parser/interpreter.cpp

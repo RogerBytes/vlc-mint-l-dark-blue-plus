@@ -121,31 +121,31 @@
       <Image id="CoinG_max" image="Interfaces_Coin_carre_g" action="move" action2="Panneaux.unmaximize()" visible="Panneaux.isMaximized"/>
       <Image id="CoinD_max" x="1274" image="Interfaces_Coin_carre_d" action="move" action2="Panneaux.unmaximize()" lefttop="righttop" rightbottom="righttop" visible="Panneaux.isMaximized"/>
       <Text id="TitreFichier" focus="false" x="170" y="6" width="940" text="$N" font="Titre" color="#DADADA" alignment="center" scrolling="auto" rightbottom="righttop"/>
-      <Button up="Icones_tb_playlist_n" down="Icones_tb_playlist_c" over="Icones_tb_playlist_s" action="dialogs.playlist()" tooltiptext="Liste de lecture" id="TB_Playlist" x="1114" y="2" lefttop="righttop" rightbottom="righttop"/>
+      <Button up="Icones_tb_playlist_n" down="Icones_tb_playlist_c" over="Icones_tb_playlist_s" action="dialogs.playlist()" tooltiptext="Playlist" id="TB_Playlist" x="1114" y="2" lefttop="righttop" rightbottom="righttop"/>
       <Button up="Icones_tb_menu_n" down="Icones_tb_menu_c" over="Icones_tb_menu_s" action="dialogs.popup()" tooltiptext="Menu" id="TB_Menu" x="1144" y="2" lefttop="righttop" rightbottom="righttop"/>
-      <Button up="Icones_Close_n" down="Icones_Close_c" over="Icones_Close_s" action="vlc.quit()" id="Quitter" x="1244" y="2" lefttop="righttop" rightbottom="righttop" tooltiptext="Fermer"/>
-      <Button up="Icones_minimise_n" down="Icones_minimise_c" over="Icones_minimise_s" action="vlc.minimize()" id="Minimiser" x="1184" y="2" lefttop="righttop" rightbottom="righttop" tooltiptext="Réduire"/>
-      <Button up="Icones_maximiseW_n" down="Icones_maximiseW_c" over="Icones_maximiseW_s" action="Panneaux.maximize()" id="Maximize" x="1214" y="2" visible="not Panneaux.isMaximized" lefttop="righttop" rightbottom="righttop" tooltiptext="Agrandir"/>
-      <Button up="Icones_maximise2004_n" down="Icones_maximise2004_c" over="Icones_maximise2004_s" action="Panneaux.unmaximize()" id="Maximize_un" x="1214" y="2" visible="Panneaux.isMaximized" lefttop="righttop" rightbottom="righttop" tooltiptext="Restaurer"/>
+      <Button up="Icones_Close_n" down="Icones_Close_c" over="Icones_Close_s" action="vlc.quit()" id="Quitter" x="1244" y="2" lefttop="righttop" rightbottom="righttop"/>
+      <Button up="Icones_minimise_n" down="Icones_minimise_c" over="Icones_minimise_s" action="vlc.minimize()" id="Minimiser" x="1184" y="2" lefttop="righttop" rightbottom="righttop"/>
+      <Button up="Icones_maximiseW_n" down="Icones_maximiseW_c" over="Icones_maximiseW_s" action="Panneaux.maximize()" id="Maximize" x="1214" y="2" visible="not Panneaux.isMaximized" lefttop="righttop" rightbottom="righttop"/>
+      <Button up="Icones_maximise2004_n" down="Icones_maximise2004_c" over="Icones_maximise2004_s" action="Panneaux.unmaximize()" id="Maximize_un" x="1214" y="2" visible="Panneaux.isMaximized" lefttop="righttop" rightbottom="righttop"/>
       <!-- Grey window buttons when the window is not focused (needs the patched module;
            on a stock VLC these are skipped and the buttons above stay as they are) -->
-      <Checkbox state="Panneaux.isFocused" up1="Icones_Close_b" over1="Icones_Close_s" down1="Icones_Close_c" up2="Icones_Close_n" over2="Icones_Close_s" down2="Icones_Close_c" action1="vlc.quit()" action2="vlc.quit()" id="Quitter_focus" x="1244" y="2" lefttop="righttop" rightbottom="righttop" tooltiptext1="Fermer" tooltiptext2="Fermer"/>
-      <Checkbox state="Panneaux.isFocused" up1="Icones_minimise_b" over1="Icones_minimise_s" down1="Icones_minimise_c" up2="Icones_minimise_n" over2="Icones_minimise_s" down2="Icones_minimise_c" action1="vlc.minimize()" action2="vlc.minimize()" id="Minimiser_focus" x="1184" y="2" lefttop="righttop" rightbottom="righttop" tooltiptext1="Réduire" tooltiptext2="Réduire"/>
-      <Checkbox state="Panneaux.isFocused" up1="Icones_maximiseW_b" over1="Icones_maximiseW_s" down1="Icones_maximiseW_c" up2="Icones_maximiseW_n" over2="Icones_maximiseW_s" down2="Icones_maximiseW_c" action1="Panneaux.maximize()" action2="Panneaux.maximize()" id="Maximize_focus" x="1214" y="2" visible="not Panneaux.isMaximized" lefttop="righttop" rightbottom="righttop" tooltiptext1="Agrandir" tooltiptext2="Agrandir"/>
-      <Checkbox state="Panneaux.isFocused" up1="Icones_maximise2004_b" over1="Icones_maximise2004_s" down1="Icones_maximise2004_c" up2="Icones_maximise2004_n" over2="Icones_maximise2004_s" down2="Icones_maximise2004_c" action1="Panneaux.unmaximize()" action2="Panneaux.unmaximize()" id="Maximize_un_focus" x="1214" y="2" visible="Panneaux.isMaximized" lefttop="righttop" rightbottom="righttop" tooltiptext1="Restaurer" tooltiptext2="Restaurer"/>
+      <Checkbox state="Panneaux.isFocused" up1="Icones_Close_b" over1="Icones_Close_s" down1="Icones_Close_c" up2="Icones_Close_n" over2="Icones_Close_s" down2="Icones_Close_c" action1="vlc.quit()" action2="vlc.quit()" id="Quitter_focus" x="1244" y="2" lefttop="righttop" rightbottom="righttop"/>
+      <Checkbox state="Panneaux.isFocused" up1="Icones_minimise_b" over1="Icones_minimise_s" down1="Icones_minimise_c" up2="Icones_minimise_n" over2="Icones_minimise_s" down2="Icones_minimise_c" action1="vlc.minimize()" action2="vlc.minimize()" id="Minimiser_focus" x="1184" y="2" lefttop="righttop" rightbottom="righttop"/>
+      <Checkbox state="Panneaux.isFocused" up1="Icones_maximiseW_b" over1="Icones_maximiseW_s" down1="Icones_maximiseW_c" up2="Icones_maximiseW_n" over2="Icones_maximiseW_s" down2="Icones_maximiseW_c" action1="Panneaux.maximize()" action2="Panneaux.maximize()" id="Maximize_focus" x="1214" y="2" visible="not Panneaux.isMaximized" lefttop="righttop" rightbottom="righttop"/>
+      <Checkbox state="Panneaux.isFocused" up1="Icones_maximise2004_b" over1="Icones_maximise2004_s" down1="Icones_maximise2004_c" up2="Icones_maximise2004_n" over2="Icones_maximise2004_s" down2="Icones_maximise2004_c" action1="Panneaux.unmaximize()" action2="Panneaux.unmaximize()" id="Maximize_un_focus" x="1214" y="2" visible="Panneaux.isMaximized" lefttop="righttop" rightbottom="righttop"/>
 
       <Image id="Fond_large" y="28" image="Interfaces_Fond_large" action="move" resize="scale" rightbottom="rightbottom" visible="not vlc.hasVout"/>
       <Image id="LogoVLC" x="575" y="323" image="Icones_no_media_sign" lefttop="rightbottom" xkeepratio="true" ykeepratio="true" visible="not vlc.hasVout"/>
 
       <Panel id="BarreControle" x="0" y="748" width="1280" height="40" lefttop="leftbottom" rightbottom="rightbottom">
         <Image id="Barr2" image="Interfaces_Barre" action="move" resize="scale" rightbottom="rightbottom"/>
-        <Button up="Icones_prev_n" down="Icones_prev_c" over="Icones_prev_s" action="playlist.previous()" id="Preview" x="6" y="6" tooltiptext="Précédent (P)"/>
-        <Checkbox state="vlc.isPaused" up1="Icones_pause_n" up2="Icones_play_n" down1="Icones_pause_c" down2="Icones_play_c" over1="Icones_pause_s" over2="Icones_play_s" action1="vlc.pause()" action2="vlc.play()" id="Play Pause" x="40" y="6" tooltiptext1="Pause (Espace)" tooltiptext2="Lecture (Espace)"/>
-        <Button up="Icones_next_n" down="Icones_next_c" over="Icones_next_s" action="playlist.next()" id="Next" x="74" y="6" tooltiptext="Suivant (N)"/>
+        <Button up="Icones_prev_n" down="Icones_prev_c" over="Icones_prev_s" action="playlist.previous()" id="Preview" x="6" y="6" tooltiptext="Previous (P)"/>
+        <Checkbox state="vlc.isPaused" up1="Icones_pause_n" up2="Icones_play_n" down1="Icones_pause_c" down2="Icones_play_c" over1="Icones_pause_s" over2="Icones_play_s" action1="vlc.pause()" action2="vlc.play()" id="Play Pause" x="40" y="6" tooltiptext1="Pause (Space)" tooltiptext2="Play (Space)"/>
+        <Button up="Icones_next_n" down="Icones_next_c" over="Icones_next_s" action="playlist.next()" id="Next" x="74" y="6" tooltiptext="Next (N)"/>
         <Slider id="VolumeIcone" x="969" y="6" points="(0,0),(1,0)" value="volume" up="Icones_transparent" lefttop="righttop" rightbottom="righttop">
           <SliderBackground id="VolumeIconeBG" image="Icones_volume_dyn" nbvert="201"/>
         </Slider>
-        <Checkbox state="vlc.isMute" up1="Icones_mute_on_n" up2="Icones_mute_n" down1="Icones_mute_on_c" down2="Icones_mute_c" over1="Icones_mute_on_s" over2="Icones_mute_s" action1="vlc.mute()" action2="vlc.mute()" id="Mute" x="969" y="6" lefttop="righttop" rightbottom="righttop" tooltiptext1="Couper le son (M)" tooltiptext2="Rétablir le son (M)"/>
+        <Checkbox state="vlc.isMute" up1="Icones_mute_on_n" up2="Icones_mute_n" down1="Icones_mute_on_c" down2="Icones_mute_c" over1="Icones_mute_on_s" over2="Icones_mute_s" action1="vlc.mute()" action2="vlc.mute()" id="Mute" x="969" y="6" lefttop="righttop" rightbottom="righttop" tooltiptext1="Mute (M)" tooltiptext2="Unmute (M)"/>
         <Slider id="Volume" x="1015" y="11" points="(0,9),(100,9)" value="volume" tooltiptext="Volume $V%" up="slider_Gtime_gripper_n" down="slider_Gtime_gripper_c" over="slider_Gtime_gripper_s" lefttop="righttop" rightbottom="righttop">
           <SliderBackground id="VolumeBG" image="slider_vol_bar" nbvert="101"/>
         </Slider>
@@ -155,9 +155,9 @@
           <SliderBackground id="Background" image="slider_slider_bg_long" nbvert="301"/>
         </Slider>
         <Text text="$D" font="UbuntuMono-B" color="#DADADA" id="Temps total" x="905" y="14" width="58" help="$H" visible="not dvd.isActive" lefttop="righttop" rightbottom="righttop"/>
-        <Button up="Icones_audiotrack_n" down="Icones_audiotrack_c" over="Icones_audiotrack_s" action="vlc.audioTrack()" tooltiptext="Piste audio (B)" id="PisteAudio" x="1170" y="6" lefttop="righttop" rightbottom="righttop"/>
-        <Button up="Icones_subtitles_n" down="Icones_subtitles_c" over="Icones_subtitles_s" action="vlc.subtitleTrack()" tooltiptext="Sous-titres (V)" id="SousTitres" x="1204" y="6" lefttop="righttop" rightbottom="righttop"/>
-        <Button up="Icones_full_n" down="Icones_full_c" over="Icones_full_s" action="vlc.fullscreen()" id="Plein Ecran" x="1238" y="6" lefttop="righttop" rightbottom="righttop" tooltiptext="Plein écran (F)"/>
+        <Button up="Icones_audiotrack_n" down="Icones_audiotrack_c" over="Icones_audiotrack_s" action="vlc.audioTrack()" tooltiptext="Audio track (B)" id="PisteAudio" x="1170" y="6" lefttop="righttop" rightbottom="righttop"/>
+        <Button up="Icones_subtitles_n" down="Icones_subtitles_c" over="Icones_subtitles_s" action="vlc.subtitleTrack()" tooltiptext="Subtitle track (V)" id="SousTitres" x="1204" y="6" lefttop="righttop" rightbottom="righttop"/>
+        <Button up="Icones_full_n" down="Icones_full_c" over="Icones_full_s" action="vlc.fullscreen()" id="Plein Ecran" x="1238" y="6" lefttop="righttop" rightbottom="righttop" tooltiptext="Fullscreen (F)"/>
         <Image id="RedimBas" x="0" y="36" image="resize_bord_bas" action="resizeS" resize="scale" rightbottom="righttop"/>
         <Image id="Redim" x="1268" y="28" image="resize_resize_HV" action="resizeSE" lefttop="rightbottom" rightbottom="rightbottom"/>
       </Panel>
@@ -175,21 +175,21 @@
         <SliderBackground id="FS_SliderBG" image="slider_slider_bg_fs" nbvert="301"/>
       </Slider>
       <Text text="$D" font="UbuntuMono-B" color="#DADADA" id="FS_Duree" x="658" y="24" width="58" visible="not dvd.isActive"/>
-      <Button up="Icones_fs_prev_n" down="Icones_fs_prev_c" over="Icones_fs_prev_s" action="playlist.previous()" id="FS_Prev" x="16" y="52" tooltiptext="Précédent (P)"/>
-      <Checkbox state="vlc.isPaused" up1="Icones_fs_pause_n" up2="Icones_fs_play_n" down1="Icones_fs_pause_c" down2="Icones_fs_play_c" over1="Icones_fs_pause_s" over2="Icones_fs_play_s" action1="vlc.pause()" action2="vlc.play()" id="FS_PlayPause" x="50" y="52" tooltiptext1="Pause (Espace)" tooltiptext2="Lecture (Espace)"/>
-      <Button up="Icones_fs_next_n" down="Icones_fs_next_c" over="Icones_fs_next_s" action="playlist.next()" id="FS_Next" x="84" y="52" tooltiptext="Suivant (N)"/>
+      <Button up="Icones_fs_prev_n" down="Icones_fs_prev_c" over="Icones_fs_prev_s" action="playlist.previous()" id="FS_Prev" x="16" y="52" tooltiptext="Previous (P)"/>
+      <Checkbox state="vlc.isPaused" up1="Icones_fs_pause_n" up2="Icones_fs_play_n" down1="Icones_fs_pause_c" down2="Icones_fs_play_c" over1="Icones_fs_pause_s" over2="Icones_fs_play_s" action1="vlc.pause()" action2="vlc.play()" id="FS_PlayPause" x="50" y="52" tooltiptext1="Pause (Space)" tooltiptext2="Play (Space)"/>
+      <Button up="Icones_fs_next_n" down="Icones_fs_next_c" over="Icones_fs_next_s" action="playlist.next()" id="FS_Next" x="84" y="52" tooltiptext="Next (N)"/>
       <Text id="FS_Titre" focus="false" x="138" y="58" width="251" text="$N" font="Titre" color="#DADADA" alignment="center" scrolling="auto"/>
       <Slider id="FS_VolumeIcone" x="411" y="52" points="(0,0),(1,0)" value="volume" up="Icones_transparent">
         <SliderBackground id="FS_VolumeIconeBG" image="Icones_fs_volume_dyn" nbvert="201"/>
       </Slider>
-      <Checkbox state="vlc.isMute" up1="Icones_fs_mute_on_n" up2="Icones_fs_mute_n" down1="Icones_fs_mute_on_c" down2="Icones_fs_mute_c" over1="Icones_fs_mute_on_s" over2="Icones_fs_mute_s" action1="vlc.mute()" action2="vlc.mute()" id="FS_Mute" x="411" y="52" tooltiptext1="Couper le son (M)" tooltiptext2="Rétablir le son (M)"/>
+      <Checkbox state="vlc.isMute" up1="Icones_fs_mute_on_n" up2="Icones_fs_mute_n" down1="Icones_fs_mute_on_c" down2="Icones_fs_mute_c" over1="Icones_fs_mute_on_s" over2="Icones_fs_mute_s" action1="vlc.mute()" action2="vlc.mute()" id="FS_Mute" x="411" y="52" tooltiptext1="Mute (M)" tooltiptext2="Unmute (M)"/>
       <Slider id="FS_Volume" x="457" y="57" points="(0,9),(100,9)" value="volume" tooltiptext="Volume $V%" up="slider_fs_knob_n" down="slider_fs_knob_c" over="slider_fs_knob_s">
         <SliderBackground id="FS_VolumeBG" image="slider_fs_vol_bar" nbvert="101"/>
       </Slider>
       <Text text="$V%" font="UbuntuMono-B" color="#DADADA" id="FS_VolumeTexte" x="559" y="60" width="38" alignment="right" visible="not dvd.isActive"/>
-      <Button up="Icones_fs_audiotrack_n" down="Icones_fs_audiotrack_c" over="Icones_fs_audiotrack_s" action="vlc.audioTrack()" tooltiptext="Piste audio (B)" id="FS_PisteAudio" x="612" y="52"/>
-      <Button up="Icones_fs_subtitles_n" down="Icones_fs_subtitles_c" over="Icones_fs_subtitles_s" action="vlc.subtitleTrack()" tooltiptext="Sous-titres (V)" id="FS_SousTitres" x="646" y="52"/>
-      <Button up="Icones_fs_Window_n" down="Icones_fs_Window_c" over="Icones_fs_Window_s" action="vlc.fullscreen()" id="FS_Quitter" x="680" y="52" tooltiptext="Quitter le plein écran (F)"/>
+      <Button up="Icones_fs_audiotrack_n" down="Icones_fs_audiotrack_c" over="Icones_fs_audiotrack_s" action="vlc.audioTrack()" tooltiptext="Audio track (B)" id="FS_PisteAudio" x="612" y="52"/>
+      <Button up="Icones_fs_subtitles_n" down="Icones_fs_subtitles_c" over="Icones_fs_subtitles_s" action="vlc.subtitleTrack()" tooltiptext="Subtitle track (V)" id="FS_SousTitres" x="646" y="52"/>
+      <Button up="Icones_fs_Window_n" down="Icones_fs_Window_c" over="Icones_fs_Window_s" action="vlc.fullscreen()" id="FS_Quitter" x="680" y="52" tooltiptext="Leave Fullscreen (F)"/>
     </Layout>
   </Window>
 
